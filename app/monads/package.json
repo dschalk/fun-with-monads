@@ -1,0 +1,22 @@
+{
+  "name": "monads",
+  "version": "0.0.1",
+  "description": "",
+  "main": "monad.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dschalk <davidschalk42@gmail.com> (https://github.com/dschalk)",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.2.1",
+    "babel-plugin-syntax-jsx": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
+    "path": "^0.12.7",
+    "react": "^0.14.3",
+    "snabbdom": "^0.2.7",
+    "snabbdom-jsx": "^0.3.0",
+    "webpack": "^1.12.9"
+  }
+}
