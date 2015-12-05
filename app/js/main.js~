@@ -21,19 +21,28 @@ var style1 = {backgroundColor: 'blue', textAlign: 'left', borderColor: 'lightblu
 var style3 = { marginTop: '40px', backgroundColor: '#000', height: '100%' , width: '100%', color: '#FFE4C4', fontSize: '18px' };
 var styleM = {color: '#FF000A', marginLeft: '13px', marginBottom: '2px' };
 var styleMI = {color: '#FF000A', marginLeft: '7px', marginBottom: '2px' };
-var style2h = style1;
+var style0 = style2;
+
 var style4 = style2;
 var style4e = style1;
 var style4l = style2;
+
 var style5 = style2;
 var style5e = style1;
 var style5l = style2;
-var style4h = style1;
-var style0 = style2;
-var style5 = style2;
+
 var style6 = style2;
 var style6e = style1;
 var style6l = style2;
+
+var style4 = style2;
+var style4e = style1;
+var style4l = style2;
+
+var styleR = style2;
+var styleRe = style1;
+var styleRl = style2;
+
 
 function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) { 
     return h('div',{style: style3}, 
@@ -98,29 +107,28 @@ function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) {
       h('p', 'In the second case, mM2 sends its value to a composite function, while in the first example, mM1 calls bnd on f and subsequently calls bnd on g.' ),
       h('h3', {style: {color: '#BFBFBF'}}, 'Ordinary Functions' ),
       h('p', 'bnd is designed to operate on functions that map values to monads. Any monad can be supplied to the stand-alone function. The bnd method returns the calling monad. The bnd method returns whatever its first argument returns, possibly in conjunction with other optional arguments. In the simplest cases, m.bnd(f) returns f(m.x).So if m is a monad with a value of 5 and f = x => x*x, m.bnd(f) = f(m.x) = f(5) = 25. The result is not a monad, so no further binding is possible, but any function that takes arguments of type m.x for some monad m is a valid argument for m.bnd, which returns f(m.x).' ),  
-      h('p', 'fmap is designed to take an ordinary function as a first argument and return the monad specified in the second argument. If no second argument is provided, fmap return the calling monad. fmap can\'t pass the calling monad\'s value to other monads, but with a little help from bnd, anything can be accomplished without resorting to specialized functions. For example:' ),
+      h('p', 'fmap is designed to take an ordinary function as a first argument and return the monad specified in the second argument. If no second argument is provided, fmap return the calling monad. fmap doesn\'t automatically pass the calling monad\'s value down the chain, but that is not an impediment. '),
+
+      h('p', 'GOAL: Pass mM1\'s value to mM2 and cube it, leaving mM1\'s value unchanged and using the ordinar function cu, defined as ' ),
+      h('pre', {style: {color: '#AFEEEE'}}, `cu = x => x*x*x` ),
+               
+      h('p', 'First, we will do it with a little help from bnd.' ),
       h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: update2B }, style: style4},
-               `mM1.ret(3).bnd(a => fmap( _ => a*a*a, mM2 ))`  ),  
-      h('p', 'The value of mM1 is mM2. When using fmap, it is sometimes useful to extract nested monads with the function "pure", defined as' ),
-      h('pre', {style: {color: '#AFEEEE'}}, `
-var pure = function pure(x,mon) {
-  if (typeof mon.x.x == 'undefined') {
-    return mon;
-  }
-  mon.ret(mon.x.x);
-  return mon;
-};` ),
-      h('button', {on: { mouseenter: update5e, mouseleave: update5l, click: update2C }, style: style5},
-               'mM1.ret(3).fmap(v => mM2.ret(v + 7)).bnd(pure)' ),
-      h('br' ),
-      h('p', 'Using fmap, mM1 wasn\'t able to retain its original value while passing it to mM2 for a computation. In the first example in this demonstration, that was easily accomplished with bnd in "mM1.ret(3).bnd(v => mM2.ret(v + 7)". In m.bnd(f), bnd returns whatever f returns, which is mM2 in the previous example. ' ),
+               `mM1.ret(3).bnd(v => mM2.ret(v).fmap( cu, mM2 ))`  ),  
+      h('p', 'Next, we accomplish the same thing without any help from bnd.'  ),
+      h('button', {on: { mouseenter: update6e, mouseleave: update6l, click: update2B2 }, style: style6},
+               `mM1.ret(3).fmap( _ => {var a = mM1.x; mM2.ret(a).fmap(cu); return a})`  ), 
+      h('p', 'But defining the specialized function "cube" wasn\'t much work, and this is ever so much more elegant than the fmap solutions: '  ),
 
-  
-          h('div', {style: {height: '300px'}} ),
+      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: update2B3 }, style: style4},
+                         `mM1.ret(3).bnd(mM2.ret).bnd(cube) `  ), 
 
 
 
 
+
+
+      h('div', {style: {height: '300px'}} ),
         ] ), 
       h ('div',{style: { width: '30%', position: 'fixed', top: '20px', right: '15px', color: '#CCFDDA'}},
         [
@@ -155,11 +163,23 @@ var pure = function pure(x,mon) {
           h('span', 'mMI2.x: '),
           h('span', {style: styleMI}, '  ' + mI1),
           h('br'),
+          h('br'),
+          h('br'),
+      h('button', {on: { mouseenter: updateRe, mouseleave: updateRl, click: updateR }, style: styleR},
+                     `REFRESH`   )           
         ] )        
     ] )
 }  
 
+
 function update0(event) {
+  const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
+  oldVnode = patch(oldVnode, newVnode);
+}
+
+function updateR(event) {
+  mM1.ret(0).bnd(mM2.ret).bnd(mM3.ret).bnd(mM4.ret).bnd(mM5.ret)
+  .bnd(mM6.ret).bnd(mM7.ret).bnd(mM8.ret).bnd(mMI1.ret).bnd(mMI2.ret);  
   const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
   oldVnode = patch(oldVnode, newVnode);
 }
@@ -179,7 +199,21 @@ function update2(event) {
 }
 
 function update2B(event) {
-  mM1.ret(3).bnd(a => fmap(_ => a*a*a,mM2));
+  mM1.ret(3).bnd(v => mM2.ret(v).fmap(cu, mM2));
+  console.log(mM1.x, mM2.x);
+  const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
+  oldVnode = patch(oldVnode, newVnode);
+}
+
+function update2B2(event) {
+  mM1.ret(3).fmap( _ => {var a = mM1.x; mM2.ret(a).fmap(cu); return a})
+  console.log(mM1.x, mM2.x);
+  const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
+  oldVnode = patch(oldVnode, newVnode);
+}
+
+function update2B3(event) {
+  mM1.ret(3).bnd(mM2.ret).bnd(cube) 
   console.log(mM1.x, mM2.x);
   const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
   oldVnode = patch(oldVnode, newVnode);
@@ -250,6 +284,18 @@ function update6e(event) {
 
 function update6l(event) {
   style6 = style2;
+  const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
+  oldVnode = patch(oldVnode, newVnode);
+}
+
+function updateRe(event) {
+  styleR = style1;
+  const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
+  oldVnode = patch(oldVnode, newVnode);
+}
+
+function updateRl(event) {
+  styleR = style2;
   const newVnode = view(mM1.x, mM2.x, mM3.x, mM4.x, mM5.x, mM6.x, mM7.x, mM8.x, mMI1.x, mMI2.x);
   oldVnode = patch(oldVnode, newVnode);
 }
