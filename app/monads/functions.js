@@ -34,6 +34,8 @@
     return f(mon.x, mon, ...args);
   }
 
+  let pure = m => m.x;
+
   class MonadIter {
     constructor(z,g) {
 

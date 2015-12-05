@@ -128,13 +128,19 @@ var join = function join(m) {
   return m.x;
 };
 
+var pure e= function pure(x, mon) {
+  if (x.x != undefined) {
+  return x.x;
+  };
+  return mon;
+};
+
 var bnd = function bnd(f, mon) {
   for (var _len5 = arguments.length, args = Array(_len5 > 2 ? _len5 - 2 : 0), _key5 = 2; _key5 < _len5; _key5++) {
     args[_key5 - 2] = arguments[_key5];
   }
 
-  f.apply(undefined, [mon.x, mon].concat(args));
-  return mon;
+  return f.apply(undefined, [mon.x, mon].concat(args));
 };
 
 var fmap = function fmap(f, mon) {

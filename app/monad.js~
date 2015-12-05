@@ -124,15 +124,14 @@ var MonadIter = function MonadIter(z, g) {
   };
 };
 
-var join = function join(m) {
-  return m.x;
-};
-
 var pure = function pure(x,mon) {
   if (typeof mon.x.x == 'undefined') {
+    console.log('undefined' );
     return mon;
   }
+  console.log('Bypassed the test');
   mon.ret(mon.x.x);
+  console.log(mon.x);
   return mon;
 };
 

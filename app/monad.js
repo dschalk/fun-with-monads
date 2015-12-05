@@ -124,8 +124,12 @@ var MonadIter = function MonadIter(z, g) {
   };
 };
 
-var join = function join(m) {
-  return m.x;
+var pure = function pure(x,mon) {
+  if (typeof mon.x.x == 'undefined') {
+    return mon;
+  }
+  mon.ret(mon.x.x);
+  return mon;
 };
 
 var bnd = function bnd(f, mon) {
