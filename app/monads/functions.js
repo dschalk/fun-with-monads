@@ -70,7 +70,8 @@
           self.flag = false;
           return p[3];
         }
-     }
+      }
+    }
 
       this.bnd = (func, ...args) => {
         let self = this;

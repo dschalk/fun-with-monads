@@ -10,6 +10,7 @@
   "author": "Yassine Elouafi <yelouafi@gmail.com>",
   "dependencies": {
     "snabbdom": "^0.2.0",
+    "snabbdom-jsx": "^0.3.0",
     "webpack": "^1.12.9"
   },
   "devDependencies": {
