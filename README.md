@@ -2,7 +2,7 @@
 #Fun With Monads
 
 running "npm run watch" watches for change and creates the browser bundle "build.js"
-"npm run build" update "build.js" without running watch.
+"npm run build" update "build.js" without running watch. You can then load app/index.html into a browser, or you can use a server. I run warp from the app directory. It is globally available, so I just type "warp" in the command line and go to localhost:3000 or whatever other port I designate.
 
 "app/index.html" contains two scripts. On top is "monad.js" and next is "build.js" In the browser, the console log gives access to some ready-made monad instances and a number of functions, including all of the functions used in this project. It is a good place to experiment with the monads. monad.js is a ES5 file that you can insert in your html code, just as I have done. 
 

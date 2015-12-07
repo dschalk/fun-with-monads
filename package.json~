@@ -10,6 +10,7 @@
   "author": "Yassine Elouafi <yelouafi@gmail.com>",
   "dependencies": {
     "snabbdom": "^0.2.0",
+    "snabbdom-jsx": "^0.3.0",
     "webpack": "^1.12.9"
   },
   "devDependencies": {
@@ -19,7 +20,7 @@
     "watchify": "^3.3.0"
   },
   "scripts": {
-    "build": "browserify app/js/main.js -t [ babelify --stage 1 ] --outfile app/build.js",
-    "watch": "watchify app/js/main.js -t babelify --outfile app/build.js"
+    "build": "browserify ../monads-websockets/app/js/main.js -t [ babelify --stage 1 ] --outfile ../monads-websockets/app/build.js",
+    "watch": "watchify ../monads-websockets/app/js/main.js -t babelify --outfile ../monads-websockets/app/build.js"
   }
 }

@@ -146,9 +146,10 @@ function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) {
       h('br', ),    
       h('button', {on: { mouseenter: update6e, mouseleave: update6l, click: updateNext }, style: style6},
             [ cow.next ],   ),
-      h('p',' ',   ),
-      h('h2', {style: {textAlign: 'center', color: '#ffba66'}}, 'Next: Websocket interractions with MonadIter instances. ' ),
-      h('p','The repository is a work in progress at https://github.com/dschalk/monad-websockets. An online URL for the running app will be available soon ',   ),
+      h('p',' Next, we will start down tree branch A, pause execution and start down branch B, pause and resume progress down branch A using data generated in branch B, end branch A and proceed to the end of branch B using newly generated data from branch A. ',   ),
+      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateSteps }, style: style4},
+            [h('div', 'TEST', )  ],  ),
+
 
 
 
