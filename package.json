@@ -5,13 +5,11 @@
   "main": "nant2.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:yelouafi/snabbdom-starter.git"
+    "url": "https://github.com/dschalk/fun-with-monads"
   },
-  "author": "Yassine Elouafi <yelouafi@gmail.com>",
+  "author": "David Schalk <fpschalk@gmail.com>",
   "dependencies": {
-    "snabbdom": "^0.2.0",
-    "snabbdom-jsx": "^0.3.0",
-    "webpack": "^1.12.9"
+    "snabbdom": "0.2.0"
   },
   "devDependencies": {
     "babel": "^5.2.13",
