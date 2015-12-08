@@ -12,10 +12,10 @@
     "snabbdom": "0.2.0"
   },
   "devDependencies": {
-    "babel": "^5.2.13",
-    "babelify": "^6.0.2",
-    "browserify": "^11.0.0",
-    "watchify": "^3.3.0"
+    "babel": "5.2.13",
+    "babelify": "6.0.2",
+    "browserify": "11.0.0",
+    "watchify": "3.3.0"
   },
   "scripts": {
     "build": "browserify js/main.js -t [ babelify --stage 1 ] --outfile build.js",
