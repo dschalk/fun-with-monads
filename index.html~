@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello snabbdom</title>
+  </head>
+  <body style="background-color: #000000; color: #DDDDDD; font-size: 22px" >
+    <div id="placeholder">
+    <div id="placeholder2">Cow</div>
+    </div> 
+    <script src="monad.js"></script>
+    <script src="build.js"></script>
+  </body>
+</html>
