@@ -2,7 +2,7 @@
 
 This is part 1 of the Javasctipt Monads series. Part 2 is Websockets Monads, currently a work in progress.
 
-This repo is running online at [http://schalk.net:4002](http://schalk.net:4002). The commentary explains what is going on.
+This repo is running online at [http://schalk.net:4002](http://schalk.net:4002).
 
 The following code is in an ES5 script in the index.html file. If you open up your browser console after loading index.html, you can play with the monads and the functions there.
 
@@ -243,20 +243,43 @@ The following code is in an ES5 script in the index.html file. If you open up yo
 
   let cu = x => x*x*x;
   let sq = x => x*x;
-  let du = x => x+x;
+  let du = x => x*x;
   let ad = (a,b) => a + b;
   let id = x => x;
   let lo = x => console.log(x);
+
+  let block = (x,mon,mon2) => {
+    mon2.flag = true;
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$',mon2.id,mon2.x,mon2.flag);
+    return mon;
+  }
+
+  let release = (x,mon,mon2) => {
+    mon2.flag = false;
+    console.log('***************************',mon2.id,mon2.x,mon2.flag);
+    return mon;
+  }
+
+  let test5 = m => {
+    let x = m.x;
+    m.ret(x+3).bnd(add,1).bnd(mMS2.ret).bnd(add,1).bnd(doub);
+  }
+
+  let test6 = () => {
+    mMS1.ret(3).fmap(ad,mMS2,mMS1.x)
+    .fmap(du).fmap(ad,mM1,mMS1.x)
+    .fmap(cu).fmap(id,mMS3).bnd(add,mMS2.x + 1000);
+  }
 
   let delay = (x,mon) => {
     return new Promise( function(resolve,reject){
         setTimeout( resolve, 2000 );
     } );
-  }
+}
 
   let increment = () => {
   VAL = VAL + 1;
-  }
+}
 ```
 
 
