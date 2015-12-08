@@ -4,7 +4,7 @@ This is part 1 of the Javasctipt Monads series. Part 2 is Websockets Monads, cur
 
 This repo is running online at [http://schalk.net:4002](http://schalk.net:4002). The commentary explains what is going on.
 
-The following code is in an ES5 script in the index.html file. If you open up your browser console after loading index.html, you can play with the monads and the functions there.
+The following code is in an ES5 script in the index.html file. If you open up your browser console after loading index.html, you can play with the monads and the functions there. The online code shows examples of inserting lambdas (anonymous inline functions) in monad chains.
 
 ```javascript
  'use strict'
