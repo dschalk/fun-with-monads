@@ -121,11 +121,11 @@ function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) {
             [ cow.next ],   ),
       h('p',' ',   ),
       h('h2', {style: {textAlign: 'center', color: '#ffba66'}}, 'Next: Websocket interractions with MonadIter instances. ' ),
-      h('p','The repository is a work in progress at https://github.com/dschalk/monad-websockets. An online URL for the running app will be available soon ',   ),
-      h('br', ),    
-
-
-
+      h('span','The open source code for this page is at '  ),  
+      h('a', {props: {href: 'https://github.com/dschalk/fun-with-monads'}, style: {color: '#EECCFF'}}, 'fun_with_monads' ),
+      h('span', 'Demonstrations of this and the next pages in "Javascript Monads" project can be found at ',   ),
+      h('a', {props: {href: 'http://schalk.net'}, style: {color: '#EECCFF'}}, 'schalk.net' ),
+      h('br', ),   
       h('div', {style: {height: '300px'}} ),
         ] ), 
       h ('div',{style: { width: '30%', position: 'fixed', top: '200px', right: '15px', color: '#CCFDDA'}},
