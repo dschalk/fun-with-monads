@@ -9,6 +9,7 @@
   },
   "author": "David Schalk <fpschalk@gmail.com>",
   "dependencies": {
+    "reactive-monads": "^0.4.3",
     "snabbdom": "0.2.0"
   },
   "devDependencies": {

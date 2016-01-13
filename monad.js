@@ -193,7 +193,7 @@ var tripple = function tripple(x, mon) {
   return mon;
 };
 
-  function cube(x, mon) {
+function cube(x, mon) {
   mon.ret(x * x * x);
   return mon;
 };
