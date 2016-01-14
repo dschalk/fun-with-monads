@@ -179,32 +179,32 @@ var mMI5 = MI(0, 'mMI5');
 var mMI6 = MI(0, 'mMI6');
 
 var doub = function doub(x, mon) {
-  mon.ret(x + x);
+  mon.ret(mon.x + mon.x);
   return mon;
 };
 
 var square = function square(x, mon) {
-  mon.ret(x * x);
+  mon.ret(mon.x * mon.x);
   return mon;
 };
 
 var tripple = function tripple(x, mon) {
-  mon.ret(x + x + x);
+  mon.ret(mon.x + mon.x + mon.x);
   return mon;
 };
 
 function cube(x, mon) {
-  mon.ret(x * x * x);
+  mon.ret(mon.x * mon.x * mon.x);
   return mon;
 };
 
 var add = function add(x, mon, y) {
-  mon.ret(x + y);
+  mon.ret(mon.x + y);
   return mon;
 };
 
 var mult = function mult(x, mon, y) {
-  mon.ret(x * y);
+  mon.ret(mon.x * mon.y);
   return mon;
 };
 
@@ -337,15 +337,6 @@ var release = function release(x, mon, mon2) {
   mon2.flag = false;
   console.log('***************************', mon2.id, mon2.x, mon2.flag);
   return mon;
-};
-
-var test5 = function test5(m) {
-  var x = m.x;
-  m.ret(x + 3).bnd(add, 1).bnd(mMS2.ret).bnd(add, 1).bnd(doub);
-};
-
-var test6 = function test6() {
-  mMS1.ret(3).fmap(ad, mMS2, mMS1.x).fmap(du).fmap(ad, mM1, mMS1.x).fmap(cu).fmap(id, mMS3).bnd(add, mMS2.x + 1000);
 };
 
 var delay = function delay(x, mon) {
