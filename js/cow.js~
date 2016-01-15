@@ -86,29 +86,30 @@ mM8.bnd(mM4.ret);` );
 
 const functions1 = h('pre', {style: {color: '#AFEEEE' }}, 
 `
-var cubeL = function cube(x, mon) {
-  mon.ret(x * x * x);
-  return mon;
-};
-
-var cubeR = function cube(x, mon) {
+var cube = function cube(x, mon) {
   mon.ret(mon.x * mon.x * mon.x);
   return mon;
 };
 
-var addL = function add(x, mon, y) {
-  mon.ret(x + y);
-  return mon;
-};
-
-var addR = function add(x, mon, y) {
-  mon.ret(mon.x + mon.y);
+var add = function add(x, mon, y) {
+  mon.ret(mon.x + y);
   return mon;
 };
 ` );  
 
-const test2 = h('pre', {style: {color: '#AFEEEE' }}, 
+const lambdas  = h('pre', {style: {color: '#AFEEEE' }}, 
 `
+    mM3.ret(2)
+     .bnd(() => mM2
+     .ret(7)
+     .bnd(() => mM1
+     .ret(3)
+     .bnd(x => mM2
+     .bnd(y => mM3
+     .bnd(z => mM4
+     .ret(x*y*z) 
+     .bnd(() => mM5.ret('Lambda!')           
+        ))))))
 ` );  
 
 const test3 = h('pre', {style: {color: '#AFEEEE' }}, 
@@ -134,7 +135,7 @@ const test7 = h('pre', {style: {color: '#AFEEEE' }},
 const next = h('div', {style: {fontSize: '28px', color: 'FFFF00'}}, 'mMI2.release()'  );
 
 
-export default {monad, monadIter, steps, next, test};
+export default {monad, monadIter, steps, next, test, functions1, lambdas};
 
 
 

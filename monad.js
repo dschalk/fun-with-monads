@@ -178,56 +178,34 @@ var mMI4 = MI(0, 'mMI4');
 var mMI5 = MI(0, 'mMI5');
 var mMI6 = MI(0, 'mMI6');
 
-
 var doub = function doub(x, mon) {
-  mon.ret(x + x);
+  mon.ret(mon.x + mon.x);
   return mon;
 };
 
 var square = function square(x, mon) {
-  mon.ret(x * x);
+  mon.ret(mon.x * mon.x);
   return mon;
 };
 
 var tripple = function tripple(x, mon) {
-  mon.ret(x + x + x);
+  mon.ret(mon.x + mon.x + mon.x);
   return mon;
 };
 
 function cube(x, mon) {
-  mon.ret(x * x * x);
+  mon.ret(mon.x * mon.x * mon.x);
   return mon;
 };
 
 var add = function add(x, mon, y) {
-  mon.ret(x + y);
+  mon.ret(mon.x + y);
   return mon;
 };
 
 var mult = function mult(x, mon, y) {
-  mon.ret(x * mon.y);
+  mon.ret(mon.x * y);
   return mon;
-};
-
-var lg = '';
-
-var log = function log(x, mon, y) {
-  lg = y;
-  return mon;
-};
-
-var fnc = function fnc(a, b) {
-  return a.b;
-};
-
-var branch = function branch(x, mon, a) {
-  return mon;
-};
-
-var branchT = function branchT(x, mon, a) {
-  setTimeout(function () {
-    return mon;
-  }, 500);
 };
 
 var rand = function rand(a, b) {
@@ -346,6 +324,4 @@ var delay = function delay(x, mon) {
   });
 };
 
-var increment = function increment() {
-  VAL = VAL + 1;
-};
+

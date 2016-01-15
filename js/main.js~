@@ -50,7 +50,7 @@ var styleRl = style2;
 function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) { 
     return h('div',{style: style3}, 
     [  h('div',{style: { width: '65%', textAlign: 'left', marginLeft: 40, marginRight: '17%', fontSize: '24px'}}, 
-    [ h2('h1', {style: {textAlign: 'center', color:  '#BBFFFF'}}, 'Fun With Monads - UNDER RECONSTRUCTION'),
+    [ h('h2', {style: {textAlign: 'center', color:  '#BBFFFF'}}, 'Fun With Monads - UNDER RECONSTRUCTION'),
       h('span', {style: {marginLeft: '18px'}},  'The code for this single-page site is at ' ),
       h('a', {props: {href: 'https://github.com/dschalk/fun-with-monads'}, style: {color: '#EECCFF'}}, 'fun_with_monads' ),
       h('span', ' If pressing F12 switches your browser to a console, I think you will find that you have access to all of the monads and functions being used in this presentation, Try entering "mM1.ret("Hello world")" on the command like. Press F12 again and roll over (don\'t click it) the RE-SET button at the bottom of the right column. When the column gets updated, the new value of mM1.x that you created should appear. '  ),
@@ -61,73 +61,30 @@ function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) {
       cow.monad,
       h('p', 'The monads are rich in possiblities. You\'ve heard the expression, "Garbage in, garbage out". The bnd method does not screen the functions it receives as arguments. It might return NAN or undefined; it might return nonsense; but given the right functions, bnd can support elegant solutions to problems. We will explore the nuances of fine-tuning functions for the bnd method with the following functions.' ),
       cow.functions1,
-      h('p', 'Proposition: For all monads "m",'  ),  
+      h('p', 'Note that when the bnd method calls these functions, we do not specify the "x" and "mon" parameters of the functions because bnd provides the calling monad\'s value and its self to the function. So if we want to cube a modad\'s value, we just write ".bnd(cube), and if we want to add 1, we write ".bnd(add,1). Any extra arguments would be ignored by "cube", but "add" would fail because the number to be added would be push out of place and replaced by the value of the calling monad. So, no matter what you tried to add, the calling monad\'s value would always double. '  ),
 
-
-      h('h3',  'How The Simple Monads Work' ),
-      h('p', 'Let\'s see if the following statements are true or false when given the "Left" (addL, cubeL) or the "Right" (addR, cubeR) functions.' ),
-
-
-
-      h('pre',  `m.ret(a).bnd(f) = f(a)`  ),
-      h('p', 'Example:' ),
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.ret(4).bnd(cubeL) === cubeL(4,mM1)`  ),
-      h('br'),  
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.ret(4).bnd(cubeR) === cubeR(4,mM1)`  ),
-      h('br'),  
-
-      h('pre',  `m.bnd(m.ret) = m`  ),
-      h('p', 'Example:' ),
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.bnd(mM1.ret) === mM1`  ),
-      h('br'),  
-
-      h('pre',  `m.bnd(val => g(val).bnd(f) = m.bnd(f).bnd(g)`  ),
-      h('p', 'Example:' ),
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.bnd(val => add(val, mM1, 1).bnd(cube)) === mM1.bnd(add,1).bnd(cube)`  ),
-      h('br'),  
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.bnd(val => add(val, mM1, 1).bnd(cube)) === mM1.bnd(add,1).bnd(cube)`  ),
-      h('br'),  
-
-      h('pre',  `m.bnd(val => f(g(val)) = m.bnd(f).bnd(g)`  ),
-      h('p', 'Example:' ),
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.bnd(val => add(val, mM1, 1).bnd(cube)) === mM1.bnd(add,1).bnd(cube)`  ),
-      h('br'),  
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        `mM1.bnd(val => add(val, mM1, 1).bnd(cube)) === mM1.bnd(add,1).bnd(cube)`  ),
-      h('br'),  
-
-
-
-
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4},
-        ` mM2.ret(mM1.bnd(add,1).bnd(square) === mM1.bnd(val => square(add(val, mM1, 1).x, mM1)))`  ),
-      h('p', 'returns "true" for arbitrary values of mM3.x. Note that when we use "add" as a stand-alone function rather than an argument in the "bnd" method, we have to explicitly specify the value and the monad upon which add operates. ' ),
-      h('h3', 'Lambdas' ),
-      h('p', 'The method "bnd" is designed to take a function as its first argument. The first two arguments provided to that function are the value of the calling monad and the calling monad itself. For example, "cube" is defined as: '),
-      h('pre', 
-`square = function square(x, mon) {
-  mon.ret(mon.x * mon.x);
-  return mon;
-}`  ),  
-      h('p', 'The calling monad\'s value and the calling monad are implicit, so we don\'t have to write "mM4.bnd(cube, mM4.x, mM4)". We cam just write "mM4.bnd(cube)". Let m be any monad with any value v (in other words, m.x = v), and let f be some function that takes only one argument. "m.bnd(f)" returns f(m.x, m, ...args) which is just f(m.x) because f takes only the first argument, ignoring all the rest. By the definition of "v" above, f(m.x) = f(v), so m.bnd(f) = f(v). Let\'s set m\'s value to 3 and cube it, you get the number 27. You can verify this by pressing F12 and entering "mM1.ret(3).bnd(k => k*k*k)". "typeof mM1.ret(3).bnd(k => k*k*k)" returns "number". Not real exciting, but wait! That nameless function looks like a good old-fashioned lambda. Let\'s try something a little more elaborate.' ),
-
-
-      h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: update2 }, style: style4},
+      h('h3',  'Why Not Use "x" Instead of "mon.x" in the Bodies of Functions?' ),
+      h('p', 'You might have noticed that "x" and "mon.x" are identical values in the function bodies of add and cube. Why not save key strokes and use "x". You can define the functions that way, and they will usually work but will not be so robust. Consider: ' ),
+     h('pre', 
+`    mM1.ret(0); 
+    cube( mM1.x, (mM1.bnd(add,3) ))
+    cube(0,mM1)`   ),
+   h('p', 'When cube evaluates its arguments, the left value is still "0" but the right value is mM1 with a value of 3. You get 0 or 27, depending on whether cube(x,mon) cubes x or mon. We could throw in boilerplate to make mM1.x listen for changes, but "monad.bnd(add,3).bnd(cube)" is a better way to add three to a monad\'s value and then cube it. When coders get playful and creative, API\'s should be as robust as possible. One way to insure robustness is refrain from using the "x" in function(x,mon). I used Facebook\'s React for a while and felt what it must be like to work with many other coders in an organization determined to minimize bugs and security holes. So much so that I spent hours trying to include HTML in the "render" function, finally giving up and inserting multiple multiple components. It is such a relief to be using Snabbdom. I highly recommend it.'  ),
+   h('h3', 'Why Have the "x" if You Don\t Use It?'  ),
+   h('p', 'Click below to see the answer.'  ),
+   h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: updateDemo1 }, style: style4}, [
+    cow.lambdas] ),
+   h('p', 'Or, putting it more succinctly,'  ), 
+   h('button', {on: { mouseenter: update4e, mouseleave: update4l, click: update2 }, style: style5},
                `mM1.ret(3).bnd(x => mM2.ret(4).bnd(y => mM3.ret(x + y)))`  ),
-      h('p', 'Functions made for bnd are defined to operate on the calling monad\'s value and the monad itself, even though the value of any monad m is available inside the function body as m.x. The extra "x, " keystrokes needed to define functions for the bnd method seems a small price to pay for the convenience of being able to neatly intersperse familiar-looking lambda expressions anywhere along a chain of computations. Remember, a monad\'s value can be a deeply nested array of arrays, nested objects, and functions. '  ),   
-      h('p', 'Using only the definition of "Monad", it is easy to prove that for all monads m, values v, and functions f:' ),
-      h('pre', 
-`     m.bnd(m.ret) = m
-     m.ret(v).bnd(f) === f(v, m)` ),
-      h('button', {on: { mouseenter: update5e, mouseleave: update5l, click: updateDemo2 }, style: style5},
-     'mM4.ret(mM3.ret(4).bnd(cube) === cube(4, mM3))'   ),
+      h('h3',  'How The Simple Monads Work' ),
+
+
+      
       h('h3', 'Next: Websocket interractions with MonadIter instances. ' ),
+
+
+
       h('p', 'In the next section, we will see how MonadIter facilitates building lazy chains of computations that can be paused, interacted with, and possibly never executed . If the computations along the chain manipulate only monadic values, with a possible side effect only at the last link, we can use only pure (side-effect free) functions outside of the Monad and MonadIter classes. We could also refrain from mutating values outside of the monad world. What we would gain and what we would lose are hard to know from this theoretical vantage point, so in some future installment in this series, I will dig in and do some experimenting. "Fun with monads"? Well, I\'m having fun.  ' ),
         
       h('span','The open source code for this page is at '  ),  
@@ -192,23 +149,67 @@ function updateR(event) {
 
 function update(event) {
   mM2.bnd(v => add(v,mM2,5).bnd(cube));
-  console.log(mM1.x, mM2.x);
   update0();
 }
 
 function update2(event) {
   mM1.ret(3).bnd(x => mM2.ret(4).bnd(y => mM3.ret(x + y)))
-  console.log(mM1.x, mM2.x);
   update0();
 }
+// ((((((((((***********************************************************
 
 function updateDemo1() {
-  mM2.ret(mM1.bnd(add,1).bnd(square) === mM1.bnd(val => cube(square(val, mM1, 1).x, mM1)))
+    mM3.ret(2)
+     .bnd(() => mM2
+     .ret(7)
+     .bnd(() => mM1
+     .ret(3)
+     .bnd(x => mM2
+     .bnd(y => mM3
+     .bnd(z => mM4
+     .ret(x*y*z) 
+     .bnd(() => mM5.ret('Lambda!')           
+        ))))))
   update0();
 }
 
 function updateDemo2() {
-  mM4.ret(mM3.ret(4).bnd(cube) === cube(4, mM3));
+  addL(3, mM1)
+  update0();
+}
+
+function updateDemo3() {
+  addR(3, mM1)
+  update0();
+}
+
+function updateDemo4() {
+  mM1.bnd(mM1.ret)
+  update0();
+}
+
+function updateDemo5() {
+  mM1.bnd(val => add(mM1.x, mM1, 1).bnd(cube))
+  update0();
+}
+
+function updateDemo6() {
+  mM1.bnd(add,1).bnd(cube)
+  update0();
+}
+
+function updateDemo7() {
+  mM1.bnd(val => add(mM1.x, mM1, v).bnd(cube))
+  update0();
+}
+
+function updateDemo8() {
+  mM1.bnd(add,1).bnd(cube)
+  update0();
+}
+
+function updateDemo9() {
+
   update0();
 }
 
