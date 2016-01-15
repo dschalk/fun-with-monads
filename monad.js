@@ -178,33 +178,34 @@ var mMI4 = MI(0, 'mMI4');
 var mMI5 = MI(0, 'mMI5');
 var mMI6 = MI(0, 'mMI6');
 
+
 var doub = function doub(x, mon) {
-  mon.ret(mon.x + mon.x);
+  mon.ret(x + x);
   return mon;
 };
 
 var square = function square(x, mon) {
-  mon.ret(mon.x * mon.x);
+  mon.ret(x * x);
   return mon;
 };
 
 var tripple = function tripple(x, mon) {
-  mon.ret(mon.x + mon.x + mon.x);
+  mon.ret(x + x + x);
   return mon;
 };
 
 function cube(x, mon) {
-  mon.ret(mon.x * mon.x * mon.x);
+  mon.ret(x * x * x);
   return mon;
 };
 
 var add = function add(x, mon, y) {
-  mon.ret(mon.x + y);
+  mon.ret(x + y);
   return mon;
 };
 
 var mult = function mult(x, mon, y) {
-  mon.ret(mon.x * mon.y);
+  mon.ret(x * mon.y);
   return mon;
 };
 

@@ -7,7 +7,7 @@ const monad = h('pre', {style: {color: '#AFEEEE' }}, `  class Monad {
       this.x = z;
 
       this.bnd = (func, ...args) => {
-        return func(this.x, this, ...args);
+        func(this.x, this, ...args);
       };
 
       this.ret = a => {
@@ -84,10 +84,57 @@ mM2.ret(mM8.x);
 mM3.fmap(_ => mM8.x);
 mM8.bnd(mM4.ret);` );  
 
+const functions1 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+var cubeL = function cube(x, mon) {
+  mon.ret(x * x * x);
+  return mon;
+};
+
+var cubeR = function cube(x, mon) {
+  mon.ret(mon.x * mon.x * mon.x);
+  return mon;
+};
+
+var addL = function add(x, mon, y) {
+  mon.ret(x + y);
+  return mon;
+};
+
+var addR = function add(x, mon, y) {
+  mon.ret(mon.x + mon.y);
+  return mon;
+};
+` );  
+
+const test2 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
+const test3 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
+const test4 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
+const test5 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
+const test6 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
+const test7 = h('pre', {style: {color: '#AFEEEE' }}, 
+`
+` );  
+
 const next = h('div', {style: {fontSize: '28px', color: 'FFFF00'}}, 'mMI2.release()'  );
 
 
-export default {monad, monadIter, steps, next, test};
+export default {monad, monadIter, steps, next, test, functions1};
 
 
 
