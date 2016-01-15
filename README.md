@@ -1,4 +1,6 @@
-#Fun With Monads - UNDER RECONSTRUCTION
+#Complete overhaul. Moving to javascript-monads-part1.
+
+Fun With Monads - UNDER RECONSTRUCTION
 
 This is part 1 of the Javasctipt Monads series. Part 2 is Websockets Monads, currently a work in progress.
 
