@@ -1,4 +1,4 @@
-#Fun With Monads
+#Fun With Monads - UNDER RECONSTRUCTION
 
 This is part 1 of the Javasctipt Monads series. Part 2 is Websockets Monads, currently a work in progress.
 
