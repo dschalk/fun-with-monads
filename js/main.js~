@@ -50,7 +50,7 @@ var styleRl = style2;
 function view(m1, m2, m3, m4, m5, m6, m7, m8, mI1, mI2) { 
     return h('div',{style: style3}, 
     [  h('div',{style: { width: '65%', textAlign: 'left', marginLeft: 40, marginRight: '17%', fontSize: '24px'}}, 
-    [ h('h1', {style: {textAlign: 'center', color:  '#BBFFFF'}}, 'Fun With Monads'),
+    [ h2('h1', {style: {textAlign: 'center', color:  '#BBFFFF'}}, 'Fun With Monads - UNDER RECONSTRUCTION'),
       h('span', {style: {marginLeft: '18px'}},  'The code for this single-page site is at ' ),
       h('a', {props: {href: 'https://github.com/dschalk/fun-with-monads'}, style: {color: '#EECCFF'}}, 'fun_with_monads' ),
       h('span', ' If pressing F12 switches your browser to a console, I think you will find that you have access to all of the monads and functions being used in this presentation, Try entering "mM1.ret("Hello world")" on the command like. Press F12 again and roll over (don\'t click it) the RE-SET button at the bottom of the right column. When the column gets updated, the new value of mM1.x that you created should appear. '  ),
