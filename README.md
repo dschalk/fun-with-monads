@@ -1,10 +1,6 @@
-#Complete overhaul. Moving to javascript-monads-part1.
+#David Schalk's Javascript Monads Project
 
-Fun With Monads - UNDER RECONSTRUCTION
-
-This is part 1 of the Javasctipt Monads series. Part 2 is Websockets Monads, currently a work in progress.
-
-This repo is running online at [http://schalk.net:4002](http://schalk.net:4002). The commentary explains what is going on.
+This repository contains code from early experiments along the way to the [Maintained Code](http://github.com/dschalk/monads-for-functional-javascript). Examples, detailed explanations, and discussions of key features are maintained and updated in the online project at [http://schalk.net:3055](http://schalk.net:3055). Because of ongoing feature additions and refactoring, the Github README.md files often lag behind the online presentation. 
 
 The following code is in an ES5 script in the index.html file. If you open up your browser console after loading index.html, you can play with the monads and the functions there. The online code shows examples of inserting lambdas (anonymous inline functions) in monad chains.
 
