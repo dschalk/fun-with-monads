@@ -1,4 +1,4 @@
-#David Schalk's Javascript Monads Project
+# David Schalk's Javascript Monads Project
 
 This repository contains code from early experiments along the way to the [Maintained Code](http://github.com/dschalk/monads-for-functional-javascript). Examples, detailed explanations, and discussions of key features are maintained and updated in the online project at [http://schalk.net:3055](http://schalk.net:3055). Because of ongoing feature additions and refactoring, the Github README.md files often lag behind the online presentation. 
 
